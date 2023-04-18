@@ -23,4 +23,13 @@ public class HolaMundoWS {
 		return new Producto(id, "Ejemplo Porducto1", 5000.0);
 	}
 	
+	@WebMethod
+	public Producto[] recuperarProductos() {
+		Producto[] productos = new Producto[2];
+		productos[0] = new Producto(1L, "Ejemplo Porducto1", 5000.0); 
+		productos[1] = new Producto(1L, "Ejemplo Porducto2", 4000.0); 
+		
+		return productos;
+	}
+	
 }
