@@ -16,4 +16,11 @@ public class HolaMundoWS {
 		return "Hola a todos!!!!";
 	}
 	
+	@WebMethod
+	public Producto recuperarProductoPorId(Long id) {
+		System.out.println("Recuperando el producto desde la base de datos.....");
+		System.out.println("Id buscar: " + id);
+		return new Producto(id, "Ejemplo Porducto1", 5000.0);
+	}
+	
 }
