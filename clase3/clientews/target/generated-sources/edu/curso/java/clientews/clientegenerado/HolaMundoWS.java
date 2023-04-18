@@ -2,6 +2,7 @@
 package edu.curso.java.clientews.clientegenerado;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -34,5 +35,20 @@ public interface HolaMundoWS {
     @ResponseWrapper(localName = "saludarResponse", targetNamespace = "http://ws.java.curso.edu/", className = "edu.curso.java.clientews.clientegenerado.SaludarResponse")
     @Action(input = "http://ws.java.curso.edu/HolaMundoWS/saludarRequest", output = "http://ws.java.curso.edu/HolaMundoWS/saludarResponse")
     public String saludar();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns edu.curso.java.clientews.clientegenerado.Producto
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "recuperarProductoPorId", targetNamespace = "http://ws.java.curso.edu/", className = "edu.curso.java.clientews.clientegenerado.RecuperarProductoPorId")
+    @ResponseWrapper(localName = "recuperarProductoPorIdResponse", targetNamespace = "http://ws.java.curso.edu/", className = "edu.curso.java.clientews.clientegenerado.RecuperarProductoPorIdResponse")
+    @Action(input = "http://ws.java.curso.edu/HolaMundoWS/recuperarProductoPorIdRequest", output = "http://ws.java.curso.edu/HolaMundoWS/recuperarProductoPorIdResponse")
+    public Producto recuperarProductoPorId(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0);
 
 }
