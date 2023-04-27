@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.curso.java.webapi.ejemplorest.dao.ProductosDAO;
 import edu.curso.java.webapi.ejemplorest.rest.dto.ProductoDTO;
 
 import java.util.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -19,10 +22,10 @@ import org.springframework.http.ResponseEntity;
 @RequestMapping("/api/v1/productos")
 public class ProductosRestController {
 
-	
 	@GetMapping
 	public ResponseEntity<List<ProductoDTO>> buscarProductos() {
 		System.out.println("Ejecutando listado");
+		
 		
 		List<ProductoDTO> productosDTO = new ArrayList<>();
 		
