@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.curso.java.webapi.ejemplorest.bo.Producto;
 import edu.curso.java.webapi.ejemplorest.dao.ProductosDAO;
 import edu.curso.java.webapi.ejemplorest.rest.dto.ProductoDTO;
+import edu.curso.java.webapi.ejemplorest.service.ProductosService;
 
 import java.util.*;
 
@@ -22,6 +24,9 @@ import org.springframework.http.ResponseEntity;
 @RequestMapping("/api/v1/productos")
 public class ProductosRestController {
 
+	@Autowired
+	private ProductosService productosService;
+	
 	@GetMapping
 	public ResponseEntity<List<ProductoDTO>> buscarProductos() {
 		System.out.println("Ejecutando listado");
@@ -40,17 +45,25 @@ public class ProductosRestController {
 	@GetMapping("/{id}")
 	public ResponseEntity<ProductoDTO> buscarProductoPorId(@PathVariable Long id) {
 		System.out.println("Ejecutando buscar " + id);
-		ProductoDTO productoDTO = new ProductoDTO(id, "Producto1", 1000.0);
 		
-		//return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		Producto producto = productosService.buscarPorId(id);
 		
-		return new ResponseEntity<ProductoDTO>(productoDTO, HttpStatus.OK);
+		if(producto != null ) {
+			ProductoDTO productoDTO = new ProductoDTO(id, producto.getNombre(), producto.getPrecio());
+			return new ResponseEntity<ProductoDTO>(productoDTO, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
 	@PostMapping
 	public ResponseEntity<ProductoDTO> altaDeNuevoProducto(@RequestBody ProductoDTO productoDTO) {
 		System.out.println("Ejecutando alta " + productoDTO.getNombre());
-
+		Producto producto = new Producto();
+		producto.setNombre(productoDTO.getNombre());
+		producto.setPrecio(productoDTO.getPrecio());
+		Long idGenerado = productosService.altaDeProducto(producto);
+		
+		productoDTO.setId(idGenerado);
 		
 		return new ResponseEntity<ProductoDTO>(productoDTO, HttpStatus.CREATED);
 	}
