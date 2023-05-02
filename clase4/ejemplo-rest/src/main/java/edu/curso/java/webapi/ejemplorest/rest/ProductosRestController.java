@@ -17,6 +17,8 @@ import edu.curso.java.webapi.ejemplorest.service.ProductosServiceImpl;
 
 import java.util.*;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,8 +58,22 @@ public class ProductosRestController {
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
+	
+	@GetMapping("/sindto/{id}")
+	public ResponseEntity<Producto> buscarProductoPorIdSinDTO(@PathVariable Long id) {
+		System.out.println("Ejecutando buscar " + id);
+		
+		Producto producto = productosService.buscarPorId(id);
+		
+		if(producto != null ) {
+			return new ResponseEntity<Producto>(producto, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	}
+	
+	
 	@PostMapping
-	public ResponseEntity<ProductoDTO> altaDeNuevoProducto(@RequestBody ProductoDTO productoDTO) {
+	public ResponseEntity<ProductoDTO> altaDeNuevoProducto(@Valid @RequestBody ProductoDTO productoDTO) {
 		System.out.println("Ejecutando alta " + productoDTO.getNombre());
 		Producto producto = new Producto();
 		producto.setNombre(productoDTO.getNombre());
@@ -70,7 +86,7 @@ public class ProductosRestController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<ProductoDTO> actualizarProducto(@PathVariable Long id, @RequestBody ProductoDTO productoDTO) {
+	public ResponseEntity<ProductoDTO> actualizarProducto(@PathVariable Long id, @Valid @RequestBody ProductoDTO productoDTO) {
 		System.out.println("Ejecutando actualizar " + id);
 	
 		Producto producto = productosService.buscarPorId(id);

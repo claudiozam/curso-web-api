@@ -1,9 +1,18 @@
 package edu.curso.java.webapi.ejemplorest.rest.dto;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class ProductoDTO {
 
 	private Long id;
+	
+	@NotBlank
 	private String nombre;
+	
+	@NotNull
+	@DecimalMin("1")
 	private Double precio;
 	
 	public ProductoDTO() { }
