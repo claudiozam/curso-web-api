@@ -13,6 +13,7 @@ import edu.curso.java.webapi.ejemplorest.bo.Producto;
 import edu.curso.java.webapi.ejemplorest.dao.ProductosDAO;
 import edu.curso.java.webapi.ejemplorest.rest.dto.ProductoDTO;
 import edu.curso.java.webapi.ejemplorest.service.ProductosService;
+import edu.curso.java.webapi.ejemplorest.service.ProductosServiceImpl;
 
 import java.util.*;
 
@@ -30,16 +31,16 @@ public class ProductosRestController {
 	@GetMapping
 	public ResponseEntity<List<ProductoDTO>> buscarProductos() {
 		System.out.println("Ejecutando listado");
-		
-		
 		List<ProductoDTO> productosDTO = new ArrayList<>();
 		
-		productosDTO.add(new ProductoDTO(1L, "Producto1", 1000.0));
-		productosDTO.add(new ProductoDTO(2L, "Producto2", 1000.0));
-		productosDTO.add(new ProductoDTO(3L, "Producto3", 1000.0));
+		
+		List<Producto> productos = productosService.buscarProducto();
+
+		for (Producto p : productos) {
+			productosDTO.add(new ProductoDTO(p.getId(), p.getNombre(), p.getPrecio()));
+		}
 		
 		return new ResponseEntity<List<ProductoDTO>>(productosDTO, HttpStatus.OK);
-
 	}
 
 	@GetMapping("/{id}")
@@ -71,14 +72,23 @@ public class ProductosRestController {
 	@PutMapping("/{id}")
 	public ResponseEntity<ProductoDTO> actualizarProducto(@PathVariable Long id, @RequestBody ProductoDTO productoDTO) {
 		System.out.println("Ejecutando actualizar " + id);
-		return new ResponseEntity<ProductoDTO>(productoDTO, HttpStatus.OK);
-
+	
+		Producto producto = productosService.buscarPorId(id);
+		
+		if(producto != null ) {
+			producto.setNombre(productoDTO.getNombre());
+			producto.setPrecio(productoDTO.getPrecio());
+			productosService.actualizarProducto(producto);
+			return new ResponseEntity<ProductoDTO>(productoDTO, HttpStatus.OK);
+		}
+	
+		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity borrarProductoPorId(@PathVariable Long id) {
 		System.out.println("Ejecutando borrado " + id);
-		
+		productosService.borrarProductoPorId(id);
 		return new ResponseEntity(null, HttpStatus.NO_CONTENT);
 	}
 	

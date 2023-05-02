@@ -12,6 +12,7 @@ public class Producto {
 	
 	private String nombre;
 	private Double precio;
+	private Double costo;
 	
 	public Producto() {
 		
@@ -41,5 +42,14 @@ public class Producto {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
+	
+	public Double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(Double costo) {
+		this.costo = costo;
+	}
+
 	
 }
