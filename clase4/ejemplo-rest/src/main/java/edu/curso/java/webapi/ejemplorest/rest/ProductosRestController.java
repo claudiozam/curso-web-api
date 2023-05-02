@@ -78,6 +78,7 @@ public class ProductosRestController {
 		if(producto != null ) {
 			producto.setNombre(productoDTO.getNombre());
 			producto.setPrecio(productoDTO.getPrecio());
+			productoDTO.setId(producto.getId());
 			productosService.actualizarProducto(producto);
 			return new ResponseEntity<ProductoDTO>(productoDTO, HttpStatus.OK);
 		}
