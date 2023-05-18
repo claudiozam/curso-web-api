@@ -66,7 +66,7 @@ class ListadoDeProductos extends React.Component {
             </tbody>
         </table>
         <VerProducto ref={this.setVerProductoRef}></VerProducto>
-        <FormProducto />
+        <FormProducto onAltaDeProducto={(id) => this.cargarListadoDeProducto() } />
         </div>;
     }
 

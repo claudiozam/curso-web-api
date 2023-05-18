@@ -25,6 +25,9 @@ class FormProducto extends React.Component {
       const url = 'http://localhost:8080/api/v1/productos';
       axios.post(url, producto).then(res => {
           this.setState({ idProducto: res.data.id });
+          if(this.props.onAltaDeProducto != null) {
+            this.props.onAltaDeProducto(res.data.id);
+          }
       });
 
     };
