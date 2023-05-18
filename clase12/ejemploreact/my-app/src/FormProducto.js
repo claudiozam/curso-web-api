@@ -22,11 +22,19 @@ class FormProducto extends React.Component {
         precio: this.state.precio
       };
 
-      //TODO: HACER LA LLAMADA POST AL API!!!
+      const url = 'http://localhost:8080/api/v1/productos';
+      axios.post(url, producto).then(res => {
+          this.setState({ idProducto: res.data.id });
+      });
+
     };
 
     render() {
       return <form onSubmit={(e) => this.eventoEnviarDatos(e) }>
+        <div>
+          <label>Id</label>
+          <input type="text" readOnly={true} value={this.state.idProducto} />
+        </div>
         <div>
           <label>Nombre</label>
           <input type="text" onChange={(e) => this.setState({ campoNombre: e.target.value })} />
