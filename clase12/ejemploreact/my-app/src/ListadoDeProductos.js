@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import VerProducto from "./VerProducto";
+import FormProducto from "./FormProducto";
 
 class ListadoDeProductos extends React.Component {
 
@@ -65,6 +66,7 @@ class ListadoDeProductos extends React.Component {
             </tbody>
         </table>
         <VerProducto ref={this.setVerProductoRef}></VerProducto>
+        <FormProducto />
         </div>;
     }
 

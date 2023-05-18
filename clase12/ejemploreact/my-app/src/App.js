@@ -6,7 +6,6 @@ import ListadoDeProductos from './ListadoDeProductos';
 function App() {
   return (
     <div className="App">
-      <HolaMundo></HolaMundo>
       <ListadoDeProductos></ListadoDeProductos>
     </div>
   );

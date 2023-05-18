@@ -18,8 +18,8 @@ class FormProducto extends React.Component {
     eventoEnviarDatos = (e) => {
       e.preventDefault();
       const producto = {
-        nombre: this.state.nombre,
-        precio: this.state.precio
+        nombre: this.state.campoNombre,
+        precio: this.state.campoPrecio
       };
 
       const url = 'http://localhost:8080/api/v1/productos';
