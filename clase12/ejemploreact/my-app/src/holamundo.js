@@ -4,18 +4,7 @@ import axios from 'axios';
 class HolaMundo extends React.Component {
 
 
-    constructor(props) {
-        super(props);
-        //Init del state
-        this.state = {
-            contador: 0,
-            producto: null,
-            nombre: 'sin valor'
-        };
 
-        console.log('Creando una nueva instancia del componente HolaMundo');
-        this.eventoClickSumarContador = this.eventoClickSumarContador.bind(this);
-    }
 
     componentDidMount() {
         console.log('El componente hola mundo ya se mostra en la pagina...');
@@ -45,6 +34,24 @@ class HolaMundo extends React.Component {
         return null;
     }
 
+    constructor(props) {
+        super(props);
+        //Init del state
+        this.state = {
+            contador: 0,
+            producto: null,
+            nombre: 'sin valor'
+        };
+
+        console.log('Creando una nueva instancia del componente HolaMundo');
+        this.eventoClickSumarContador = this.eventoClickSumarContador.bind(this);
+    }
+
+    eventoSubmitDeEjemplo = (e)=> {
+        e.preventDefault();
+        console.log('Esto es un ejemplo de submit.... ' + this.state.nombre);
+    }
+
     render() {
 
         return <div>
@@ -53,10 +60,10 @@ class HolaMundo extends React.Component {
                     {this.renderDatosDeProducto(this.state.producto)}
                     <button type="button" onClick={this.eventoClickSumarContador}>Sumar 1 al contador</button>
 
-                    <form>
+                    <form onSubmit={(e) => this.eventoSubmitDeEjemplo(e) }>
                         <input type="text" value={this.state.nombre} onChange={(e) => this.setState({ nombre: e.target.value}) }  />
-
                         <div>{this.state.nombre}</div>
+                        <button type="submit">Confirmar datos....</button>
                     </form>
 
                 </div>;
