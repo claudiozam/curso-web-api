@@ -7,7 +7,8 @@ class FormProducto extends React.Component {
         super(props);
         this.state = {
           campoNombre: '',
-          campoPrecio: 0
+          campoPrecio: 0,
+          idProducto: null
         }
     }
 
@@ -22,13 +23,28 @@ class FormProducto extends React.Component {
         precio: this.state.campoPrecio
       };
 
-      const url = 'http://localhost:8080/api/v1/productos';
-      axios.post(url, producto).then(res => {
+      let url = 'http://localhost:8080/api/v1/productos';
+
+      if(this.state.idProducto != null && this.state.idProducto > 0) {
+        url = url + '/' + this.state.idProducto;
+        axios.put(url, producto).then(res => {
           this.setState({ idProducto: res.data.id });
           if(this.props.onAltaDeProducto != null) {
             this.props.onAltaDeProducto(res.data.id);
           }
       });
+
+
+      } else {
+        axios.post(url, producto).then(res => {
+          this.setState({ idProducto: res.data.id });
+          if(this.props.onAltaDeProducto != null) {
+            this.props.onAltaDeProducto(res.data.id);
+          }
+       });
+
+      }
+      
 
     };
 
@@ -36,7 +52,7 @@ class FormProducto extends React.Component {
       return <form onSubmit={(e) => this.eventoEnviarDatos(e) }>
         <div>
           <label>Id</label>
-          <input type="text" readOnly={true} value={this.state.idProducto} />
+          <input type="text" onChange={(e) => this.setState({ idProducto: e.target.value })}  value={this.state.idProducto} />
         </div>
         <div>
           <label>Nombre</label>
