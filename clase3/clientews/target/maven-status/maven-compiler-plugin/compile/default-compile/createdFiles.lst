@@ -1,0 +1,9 @@
+edu/curso/java/clientews/clientegenerado/package-info.class
+edu/curso/java/clientews/clientegenerado/Producto.class
+edu/curso/java/clientews/clientegenerado/Saludar.class
+edu/curso/java/clientews/clientegenerado/HolaMundoWSService.class
+edu/curso/java/clientews/clientegenerado/HolaMundoWS.class
+edu/curso/java/clientews/clientegenerado/ObjectFactory.class
+edu/curso/java/clientews/clientegenerado/RecuperarProductoPorIdResponse.class
+edu/curso/java/clientews/clientegenerado/RecuperarProductoPorId.class
+edu/curso/java/clientews/clientegenerado/SaludarResponse.class
