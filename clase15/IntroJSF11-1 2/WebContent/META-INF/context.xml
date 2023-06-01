@@ -1,0 +1,8 @@
+<Context path="/IntroJSF" docBase="IntroJSF" debug="5" reloadable="true" crossContext="true">
+
+  <Resource name="jdbc/GeneralDB" auth="Container" type="javax.sql.DataSource"
+               maxActive="100" maxIdle="30" maxWait="10000"
+               username="root" password="root" driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://localhost/demo?autoReconnect=true&amp;characterEncoding=utf8"/>
+
+</Context>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12262651613120" configfile="/IntroJSF11/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="persons/personForm" x="48" y="84" id="pf12262657396871" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf12262657396872" inlinks="pf12262657396873" path="/persons/personForm.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="persons/personView" x="396" y="48" id="pf12262657396874" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" outlinks="pf12262657396873" inlinks="pf12262657396872 pf16856219376440" path="/persons/personView.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="persons/personList" id="pf16856219376441" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf16856219376440" path="/persons/personList.jsp"/>
+  <links id="pf12262657396872" target="pf12262657396874" source="pf12262657396871" outcome="viewPerson"/>
+  <links id="pf12262657396873" target="pf12262657396871" source="pf12262657396874" outcome="editPerson"/>
+  <links id="pf16856219376440" target="pf12262657396874" source="pf16856219376441" outcome="viewPerson"/>
+</pageflow:Pageflow>

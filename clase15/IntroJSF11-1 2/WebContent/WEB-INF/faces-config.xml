@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE faces-config PUBLIC
+    "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+    "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+
+<faces-config>
+    <application>
+		<message-bundle>edu.curso.java.web.bundle.text</message-bundle>
+	</application>
+	<managed-bean>
+		<managed-bean-name>personBean</managed-bean-name>
+		<managed-bean-class>edu.curso.java.web.jsf.bean.PersonBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>holaMundoBean</managed-bean-name>
+		<managed-bean-class>edu.curso.java.web.jsf.bean.HolaMundoBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>testSessionBean</managed-bean-name>
+		<managed-bean-class>edu.curso.java.web.jsf.bean.TestSessionBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<navigation-rule>
+		<from-view-id>/persons/personList.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>viewPerson</from-outcome>
+			<to-view-id>/persons/personView.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/persons/personForm.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>viewPerson</from-outcome>
+			<to-view-id>/persons/personView.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/persons/personView.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>editPerson</from-outcome>
+			<to-view-id>/persons/personForm.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+
+</faces-config>
